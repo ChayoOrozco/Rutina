@@ -9,6 +9,53 @@ function initShoppingList() {
     setupEventListeners();
 }
 
+function setupModalControls() {
+    const modal = document.getElementById('add-item-modal');
+    const addItemBtn = document.getElementById('add-item-btn');
+    const closeModal = document.querySelector('.close-modal');
+    const saveItemBtn = document.getElementById('save-item-btn');
+    
+    if (!modal || !addItemBtn) return;
+    
+    // Open modal
+    addItemBtn.addEventListener('click', function() {
+        modal.style.display = 'block';
+    });
+    
+    // Close modal with X button
+    if (closeModal) {
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    }
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+    
+    // Save new item
+    if (saveItemBtn) {
+        saveItemBtn.addEventListener('click', function() {
+            const itemName = document.getElementById('item-name').value.trim();
+            const itemCategory = document.getElementById('item-category').value;
+            const itemQuantity = document.getElementById('item-quantity').value.trim();
+            
+            if (itemName) {
+                const fullItemName = itemQuantity ? `${itemName} (${itemQuantity})` : itemName;
+                addShoppingItem(itemCategory, fullItemName);
+                
+                // Reset and close modal
+                document.getElementById('item-name').value = '';
+                document.getElementById('item-quantity').value = '';
+                modal.style.display = 'none';
+            }
+        });
+    }
+}
+
 function initializeShoppingListTracker() {
     // Load saved shopping items from localStorage
     loadSavedShoppingItems();
@@ -139,28 +186,29 @@ function loadShoppingItems() {
     // Categorías predefinidas con items básicos
     const defaultItems = {
         'frutas-verduras': [
-            'Manzanas', 'Plátanos', 'Brócoli', 'Zanahorias', 'Espinacas', 'Tomates'
+            'Manzanas', 'Plátanos', 'Naranjas', 'Uvas', 'Brócoli', 'Zanahorias'
         ],
         'proteinas': [
             'Pollo', 'Huevos', 'Atún', 'Legumbres', 'Tofu'
         ],
-        'carbohidratos': [
-            'Arroz integral', 'Pasta integral', 'Avena', 'Pan integral', 'Quinoa'
+        'grasas': [
+            'Aguacate (1-2 unidades)', 'Aceite de oliva extra virgen (botella pequeña)', 'Nueces o almendras (pequeña cantidad)', 'Mantequilla de almendras (natural, sin azúcar)'
         ],
-        'lacteos': [
-            'Yogur', 'Leche', 'Queso'
+        'condimentos': [
+            'Sal marina', 'Pimienta negra', 'Ajo en polvo', 'Cebolla en polvo', 'Orégano seco', 'Limones (2-3 unidades)', 'Salsa de soya baja en sodio', 'Vinagre de manzana'
         ],
-        'limpieza': [
-            'Detergente', 'Jabón de manos', 'Limpiador multiusos'
+        'snacks': [
+            'Hummus (para crudités)', 'Palomitas naturales (sin mantequilla/sal añadida)', 'Barras de granola bajas en azúcar (marca específica)', 'Yogur griego (individual)'
         ],
-        'miscelaneos': [
-            'Papel higiénico', 'Servilletas', 'Aceite de oliva'
+        'bebidas': [
+            'Café de grano (marca habitual)', 'Té verde o de hierbas', 'Leche de almendras sin azúcar', 'Agua mineral (opcional)'
         ]
     };
     
     // Cargar items guardados o predeterminados para cada categoría
     for (const category in defaultItems) {
         const categoryList = document.querySelector(`.shopping-items[data-category="${category}"]`);
+        if (!categoryList) continue;  // Skip if category doesn't exist in current HTML
         
         // Obtener items guardados o usar los predeterminados
         const items = (shoppingData[weekKey] && shoppingData[weekKey][category]) || defaultItems[category];
@@ -186,6 +234,9 @@ function loadShoppingItems() {
 
 // Configurar eventos para la aplicación de lista de compras
 function setupEventListeners() {
+    // Configurar controles del modal
+    setupModalControls();
+    
     // Eventos para checkboxes (delegación de eventos)
     document.addEventListener('change', function(e) {
         if (e.target && e.target.classList.contains('shopping-checkbox')) {

@@ -42,6 +42,7 @@ const AppConfig = {
             { id: "estrategias", name: "Estrategias", path: "estrategias.html", icon: "fas fa-brain" },
             { id: "limpieza", name: "Limpieza", path: "limpieza.html", icon: "fas fa-broom" },
             { id: "dieta", name: "Transición Dieta", path: "dieta.html", icon: "fas fa-utensils" },
+            { id: "compras", name: "Lista de Compras", path: "lista-compras.html", icon: "fas fa-shopping-cart" },
             { id: "estadisticas", name: "Estadísticas", path: "estadisticas.html", icon: "fas fa-chart-bar" }
         ]
     },

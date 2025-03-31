@@ -38,7 +38,6 @@
                 <div class="shopping-category">
                     <h3>Frutas y Verduras</h3>
                     <ul class="shopping-items" data-category="frutas-verduras">
-                        <!-- Algunos ejemplos estáticos inicial, el resto se genera dinámicamente -->
                         <li class="shopping-item">
                             <div class="item-container">
                                 <input type="checkbox" class="shopping-checkbox" data-item-id="frutas-verduras-manzanas">
@@ -50,6 +49,20 @@
                             <div class="item-container">
                                 <input type="checkbox" class="shopping-checkbox" data-item-id="frutas-verduras-platanos">
                                 <span class="shopping-item-text">Plátanos</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="frutas-verduras-naranjas">
+                                <span class="shopping-item-text">Naranjas</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="frutas-verduras-uvas">
+                                <span class="shopping-item-text">Uvas</span>
                             </div>
                             <button class="remove-item-btn">×</button>
                         </li>
@@ -70,7 +83,6 @@
                 <div class="shopping-category">
                     <h3>Proteínas</h3>
                     <ul class="shopping-items" data-category="proteinas">
-                        <!-- Algunos ejemplos estáticos inicial, el resto se genera dinámicamente -->
                         <li class="shopping-item">
                             <div class="item-container">
                                 <input type="checkbox" class="shopping-checkbox" data-item-id="proteinas-pollo">
@@ -100,85 +112,195 @@
                 </div>
                 
                 <div class="shopping-category">
-                    <h3>Carbohidratos</h3>
-                    <ul class="shopping-items" data-category="carbohidratos">
-                        <!-- Los items se generan dinámicamente con JavaScript -->
+                    <h3>Grasas saludables</h3>
+                    <ul class="shopping-items" data-category="grasas">
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="grasas-aguacate">
+                                <span class="shopping-item-text">Aguacate (1-2 unidades)</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="grasas-aceite-oliva">
+                                <span class="shopping-item-text">Aceite de oliva extra virgen (botella pequeña)</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="grasas-nueces">
+                                <span class="shopping-item-text">Nueces o almendras (pequeña cantidad)</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="grasas-mantequilla-almendras">
+                                <span class="shopping-item-text">Mantequilla de almendras (natural, sin azúcar)</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
                     </ul>
                     <div class="add-category-item">
                         <input type="text" class="category-item-input" placeholder="Agregar item...">
-                        <button class="add-category-item-btn" data-category="carbohidratos">+</button>
+                        <button class="add-category-item-btn" data-category="grasas">+</button>
                     </div>
                 </div>
                 
                 <div class="shopping-category">
-                    <h3>Lácteos</h3>
-                    <ul class="shopping-items" data-category="lacteos">
-                        <!-- Los items se generan dinámicamente con JavaScript -->
+                    <h3>Condimentos y básicos</h3>
+                    <ul class="shopping-items" data-category="condimentos">
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="condimentos-sal-marina">
+                                <span class="shopping-item-text">Sal marina</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="condimentos-pimienta-negra">
+                                <span class="shopping-item-text">Pimienta negra</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="condimentos-ajo-polvo">
+                                <span class="shopping-item-text">Ajo en polvo</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="condimentos-cebolla-polvo">
+                                <span class="shopping-item-text">Cebolla en polvo</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="condimentos-oregano">
+                                <span class="shopping-item-text">Orégano seco</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="condimentos-limones">
+                                <span class="shopping-item-text">Limones (2-3 unidades)</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="condimentos-salsa-soya">
+                                <span class="shopping-item-text">Salsa de soya baja en sodio</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="condimentos-vinagre">
+                                <span class="shopping-item-text">Vinagre de manzana</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
                     </ul>
                     <div class="add-category-item">
                         <input type="text" class="category-item-input" placeholder="Agregar item...">
-                        <button class="add-category-item-btn" data-category="lacteos">+</button>
+                        <button class="add-category-item-btn" data-category="condimentos">+</button>
                     </div>
                 </div>
                 
                 <div class="shopping-category">
-                    <h3>Productos de Limpieza</h3>
-                    <ul class="shopping-items" data-category="limpieza">
-                        <!-- Los items se generan dinámicamente con JavaScript -->
+                    <h3>Opciones de snacks saludables</h3>
+                    <ul class="shopping-items" data-category="snacks">
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="snacks-hummus">
+                                <span class="shopping-item-text">Hummus (para crudités)</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="snacks-palomitas">
+                                <span class="shopping-item-text">Palomitas naturales (sin mantequilla/sal añadida)</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="snacks-barras-granola">
+                                <span class="shopping-item-text">Barras de granola bajas en azúcar (marca específica)</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="snacks-yogur">
+                                <span class="shopping-item-text">Yogur griego (individual)</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
                     </ul>
                     <div class="add-category-item">
                         <input type="text" class="category-item-input" placeholder="Agregar item...">
-                        <button class="add-category-item-btn" data-category="limpieza">+</button>
+                        <button class="add-category-item-btn" data-category="snacks">+</button>
                     </div>
                 </div>
                 
                 <div class="shopping-category">
-                    <h3>Misceláneos</h3>
-                    <ul class="shopping-items" data-category="miscelaneos">
-                        <!-- Los items se generan dinámicamente con JavaScript -->
+                    <h3>Bebidas</h3>
+                    <ul class="shopping-items" data-category="bebidas">
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="bebidas-cafe">
+                                <span class="shopping-item-text">Café de grano (marca habitual)</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="bebidas-te">
+                                <span class="shopping-item-text">Té verde o de hierbas</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="bebidas-leche">
+                                <span class="shopping-item-text">Leche de almendras sin azúcar</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
+                        <li class="shopping-item">
+                            <div class="item-container">
+                                <input type="checkbox" class="shopping-checkbox" data-item-id="bebidas-agua">
+                                <span class="shopping-item-text">Agua mineral (opcional)</span>
+                            </div>
+                            <button class="remove-item-btn">×</button>
+                        </li>
                     </ul>
                     <div class="add-category-item">
                         <input type="text" class="category-item-input" placeholder="Agregar item...">
-                        <button class="add-category-item-btn" data-category="miscelaneos">+</button>
+                        <button class="add-category-item-btn" data-category="bebidas">+</button>
                     </div>
                 </div>
             </div>
             
             <!-- Sección de consejos para compras adaptadas -->
             <div class="tips-container" style="margin-top: 30px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid var(--primary);">
-                <h3>Consejos para Compras</h3>
-                <div style="margin-top: 10px;">
-                    <h4>Adaptaciones para TEA:</h4>
-                    <ul style="margin-left: 20px;">
-                        <li>Ir a la tienda en horas de menor afluencia</li>
-                        <li>Llevar auriculares con cancelación de ruido</li>
-                        <li>Usar lista organizada por ubicación en la tienda</li>
-                        <li>Comprar en línea cuando sea posible</li>
-                        <li>Preparar visualmente el recorrido con imágenes de la tienda</li>
-                    </ul>
-                </div>
-                
-                <div style="margin-top: 10px;">
-                    <h4>Adaptaciones para TDAH:</h4>
-                    <ul style="margin-left: 20px;">
-                        <li>Lista de compras digital con notificaciones</li>
-                        <li>Comprar solo lo de la lista, evitar distracciones</li>
-                        <li>Establecer un tiempo límite para cada sección</li>
-                        <li>Usar aplicaciones de lista de compras con categorías</li>
-                        <li>Ir acompañado para mantener el enfoque</li>
-                    </ul>
-                </div>
-                
-                <div style="margin-top: 10px;">
-                    <h4>Adaptaciones para TCA:</h4>
-                    <ul style="margin-left: 20px;">
-                        <li>Comprar después de comer, nunca con hambre</li>
-                        <li>Incluir alimentos de todas las categorías</li>
-                        <li>Evitar comprar "alimentos prohibidos" - todos los alimentos tienen lugar</li>
-                        <li>Comprar variedades de cada alimento para prevenir monotonía</li>
-                        <li>Llevar una lista escrita con un familiar/terapeuta si es necesario</li>
-                    </ul>
-                </div>
+                <h3>Consejos para la compra</h3>
+                <ul style="margin: 15px 0 20px 20px;">
+                    <li><strong>Para Isra (TEA):</strong> Mantener las mismas marcas y presentaciones. Comprar en el mismo supermercado.</li>
+                    <li><strong>Para evitar sobrecarga sensorial:</strong> Ir en horarios de menor afluencia.</li>
+                    <li><strong>Para TDAH:</strong> Llevar lista impresa y marcar con check ✓ al añadir al carrito.</li>
+                    <li><strong>Estrategia:</strong> Dividir la compra en 2 días si es necesario para evitar fatiga.</li>
+                </ul>
             </div>
             
             <!-- Modal para agregar nuevo producto -->
@@ -195,10 +317,10 @@
                         <select id="item-category">
                             <option value="frutas-verduras">Frutas y Verduras</option>
                             <option value="proteinas">Proteínas</option>
-                            <option value="carbohidratos">Carbohidratos</option>
-                            <option value="lacteos">Lácteos</option>
-                            <option value="limpieza">Productos de Limpieza</option>
-                            <option value="miscelaneos">Misceláneos</option>
+                            <option value="grasas">Grasas saludables</option>
+                            <option value="condimentos">Condimentos y básicos</option>
+                            <option value="snacks">Opciones de snacks saludables</option>
+                            <option value="bebidas">Bebidas</option>
                         </select>
                     </div>
                     <div class="form-group">
