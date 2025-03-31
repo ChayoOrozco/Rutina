@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras - Rutina Familiar de Chayo e Isra</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="js/config.js"></script>
+    <script src="js/users-db.js"></script>
+    <script src="js/nav-icons.js"></script>
+    <script src="js/shopping-list.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Rutina Familiar de Chayo e Isra</h1>
+        <p>Plan personalizado para TDAH, TCA, TEA y Depresión Clínica</p>
+    </header>
+    
+    <nav id="nav-days">
+        <!-- La navegación de días se genera dinámicamente con JavaScript -->
+    </nav>
+    <nav id="nav-tools">
+        <!-- La barra de herramientas se genera dinámicamente con JavaScript -->
+    </nav>
+    
+    <main>
+        <h2>Lista de Compras</h2>
+        
+        <div class="shopping-list-container">
+            <div class="shopping-actions">
+                <button id="add-item-btn" class="btn">Agregar Producto</button>
+                <button id="clear-checked-btn" class="btn">Eliminar Marcados</button>
+                <button id="clear-all-btn" class="btn btn-danger">Eliminar Todo</button>
+            </div>
+            
+            <div class="shopping-categories">
+                <div class="shopping-category">
+                    <h3>Frutas y Verduras</h3>
+                    <ul class="shopping-items" data-category="frutas-verduras">
+                        <!-- Los items se generan dinámicamente con JavaScript -->
+                    </ul>
+                    <div class="add-category-item">
+                        <input type="text" class="category-item-input" placeholder="Agregar item...">
+                        <button class="add-category-item-btn" data-category="frutas-verduras">+</button>
+                    </div>
+                </div>
+                
+                <div class="shopping-category">
+                    <h3>Proteínas</h3>
+                    <ul class="shopping-items" data-category="proteinas">
+                        <!-- Los items se generan dinámicamente con JavaScript -->
+                    </ul>
+                    <div class="add-category-item">
+                        <input type="text" class="category-item-input" placeholder="Agregar item...">
+                        <button class="add-category-item-btn" data-category="proteinas">+</button>
+                    </div>
+                </div>
+                
+                <div class="shopping-category">
+                    <h3>Carbohidratos</h3>
+                    <ul class="shopping-items" data-category="carbohidratos">
+                        <!-- Los items se generan dinámicamente con JavaScript -->
+                    </ul>
+                    <div class="add-category-item">
+                        <input type="text" class="category-item-input" placeholder="Agregar item...">
+                        <button class="add-category-item-btn" data-category="carbohidratos">+</button>
+                    </div>
+                </div>
+                
+                <div class="shopping-category">
+                    <h3>Lácteos</h3>
+                    <ul class="shopping-items" data-category="lacteos">
+                        <!-- Los items se generan dinámicamente con JavaScript -->
+                    </ul>
+                    <div class="add-category-item">
+                        <input type="text" class="category-item-input" placeholder="Agregar item...">
+                        <button class="add-category-item-btn" data-category="lacteos">+</button>
+                    </div>
+                </div>
+                
+                <div class="shopping-category">
+                    <h3>Productos de Limpieza</h3>
+                    <ul class="shopping-items" data-category="limpieza">
+                        <!-- Los items se generan dinámicamente con JavaScript -->
+                    </ul>
+                    <div class="add-category-item">
+                        <input type="text" class="category-item-input" placeholder="Agregar item...">
+                        <button class="add-category-item-btn" data-category="limpieza">+</button>
+                    </div>
+                </div>
+                
+                <div class="shopping-category">
+                    <h3>Misceláneos</h3>
+                    <ul class="shopping-items" data-category="miscelaneos">
+                        <!-- Los items se generan dinámicamente con JavaScript -->
+                    </ul>
+                    <div class="add-category-item">
+                        <input type="text" class="category-item-input" placeholder="Agregar item...">
+                        <button class="add-category-item-btn" data-category="miscelaneos">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal para agregar nuevo producto -->
+            <div id="add-item-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h3>Agregar Producto</h3>
+                    <div class="form-group">
+                        <label for="item-name">Nombre del producto:</label>
+                        <input type="text" id="item-name" placeholder="Ej: Manzanas">
+                    </div>
+                    <div class="form-group">
+                        <label for="item-category">Categoría:</label>
+                        <select id="item-category">
+                            <option value="frutas-verduras">Frutas y Verduras</option>
+                            <option value="proteinas">Proteínas</option>
+                            <option value="carbohidratos">Carbohidratos</option>
+                            <option value="lacteos">Lácteos</option>
+                            <option value="limpieza">Productos de Limpieza</option>
+                            <option value="miscelaneos">Misceláneos</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-quantity">Cantidad (opcional):</label>
+                        <input type="text" id="item-quantity" placeholder="Ej: 500g, 2 unidades">
+                    </div>
+                    <button id="save-item-btn" class="btn btn-block">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Script en línea para inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            initShoppingList();
+        });
+    </script>
+</body>
+</html>
