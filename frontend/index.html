@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Rutina Semanal</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script src="js/api-client.js"></script>
+    <script src="js/activity-tracker.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Nuestra Rutina Semanal</h1>
+        <p>Plan personalizado para TDAH, TCA, TEA y Depresión Clínica</p>
+    </header>
+    
+    <nav id="nav-days">
+        <a href="dias/lunes.html" class="day-link">Lunes</a>
+        <a href="dias/martes.html" class="day-link">Martes</a>
+        <a href="dias/miercoles.html" class="day-link">Miércoles</a>
+        <a href="dias/jueves.html" class="day-link">Jueves</a>
+        <a href="dias/viernes.html" class="day-link">Viernes</a>
+        <a href="dias/sabado.html" class="day-link">Sábado</a>
+        <a href="dias/domingo.html" class="day-link">Domingo</a>
+        <a href="dias/estrategias.html" class="day-link">Estrategias</a>
+        <a href="dias/limpieza.html" class="day-link">Limpieza</a>
+        <a href="dias/dieta.html" class="day-link">Transición Dieta</a>
+        <a href="dias/estadisticas.html" class="day-link">Estadísticas</a>
+        <a href="#" id="authLink" class="day-link auth-link">Iniciar Sesión</a>
+    </nav>
+    
+    <main>
+        <div class="bienvenida">
+            <h2>Bienvenidos a Nuestra Rutina Semanal Personalizada</h2>
+            <p>Este sitio contiene la rutina detallada para cada día de la semana, diseñada especialmente para nuestras necesidades.</p>
+            <p>Para comenzar, selecciona un día de la semana en el menú superior.</p>
+            
+            <div class="instrucciones">
+                <h3>Cómo utilizar esta guía:</h3>
+                <ul>
+                    <li>Cada día tiene su propia estructura y actividades específicas.</li>
+                    <li>Las secciones están codificadas por colores según quién realiza la actividad.</li>
+                    <li>Marca las actividades completadas para hacer seguimiento de tu progreso.</li>
+                    <li>En la sección de <strong>Estadísticas</strong> puedes ver un análisis de tus actividades completadas.</li>
+                    <li>En la sección de <strong>Estrategias</strong> encontrarás técnicas específicas para lidiar con TDAH, TEA, TCA y Depresión.</li>
+                    <li>La sección de <strong>Limpieza</strong> contiene el programa semanal de limpieza.</li>
+                    <li>En <strong>Transición Dieta</strong> puedes ver el plan gradual para mejorar nuestros hábitos alimenticios.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar si el usuario ha iniciado sesión usando el nuevo sistema
+            if (!ApiClient.isAuthenticated()) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Verificar token al cargar la página
+            ApiClient.fetchCurrentUser()
+                .then(user => {
+                    if (!user) {
+                        // Si el token no es válido, redirigir al login
+                        window.location.href = 'login.html';
+                    } else {
+                        updateAuthUI();
+                    }
+                })
+                .catch(() => {
+                    // Si hay un error, redirigir al login
+                    window.location.href = 'login.html';
+                });
+            
+            // Manejador para el enlace de autenticación
+            document.getElementById('authLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (ApiClient.isAuthenticated()) {
+                    // Cerrar sesión usando el nuevo sistema
+                    ApiClient.logout();
+                    alert('Has cerrado sesión exitosamente.');
+                    // Redirigir a la página de login después de cerrar sesión
+                    window.location.href = 'login.html';
+                } else {
+                    // Redirigir a la página de inicio de sesión
+                    window.location.href = 'login.html';
+                }
+            });
+        });
+        
+        // Función para actualizar la UI basada en el estado de autenticación
+        function updateAuthUI() {
+            const authLink = document.getElementById('authLink');
+            const currentUser = ApiClient.getCurrentUser();
+            
+            if (currentUser) {
+                authLink.textContent = `Cerrar Sesión (${currentUser.displayName})`;
+                // Personalizar la UI según el usuario
+                const welcomeMessage = document.querySelector('.bienvenida h2');
+                if (welcomeMessage) {
+                    welcomeMessage.textContent = `¡Bienvenido/a ${currentUser.displayName} a Nuestra Rutina Semanal!`;
+                }
+            } else {
+                authLink.textContent = 'Iniciar Sesión';
+            }
+        }
+    </script>
+</body>
+</html>

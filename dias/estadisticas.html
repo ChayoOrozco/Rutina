@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas - Rutina Familiar de Chayo e Isra</title>
+    <link rel="stylesheet" href="../estilos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="../js/users-db.js"></script>
+    <script src="../js/activity-tracker.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Rutina Familiar de Chayo e Isra</h1>
+        <p>Plan personalizado para TDAH, TCA, TEA y Depresión Clínica</p>
+    </header>
+    
+    <nav id="nav-days">
+        <a href="lunes.html" class="day-link">Lunes</a>
+        <a href="martes.html" class="day-link">Martes</a>
+        <a href="miercoles.html" class="day-link">Miércoles</a>
+        <a href="jueves.html" class="day-link">Jueves</a>
+        <a href="viernes.html" class="day-link">Viernes</a>
+        <a href="sabado.html" class="day-link">Sábado</a>
+        <a href="domingo.html" class="day-link">Domingo</a>
+        <a href="estrategias.html" class="day-link">Estrategias</a>
+        <a href="limpieza.html" class="day-link">Limpieza</a>
+        <a href="dieta.html" class="day-link">Transición Dieta</a>
+        <a href="estadisticas.html" class="day-link active">Estadísticas</a>
+        <a href="#" id="authLink" class="day-link auth-link">Iniciar Sesión</a>
+    </nav>
+    
+    <main>
+        <h2>Estadísticas de Actividades</h2>
+        
+        <div class="stats-container">
+            <h3>Resumen semanal</h3>
+            
+            <div class="stats-summary">
+                <div class="stat-card">
+                    <div class="stat-value" id="total-completion-rate">0%</div>
+                    <div class="stat-label">Tasa de Completitud Total</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="isra-completion-rate">0%</div>
+                    <div class="stat-label">Tasa de Completitud Isra</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="chayo-completion-rate">0%</div>
+                    <div class="stat-label">Tasa de Completitud Chayo</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="ambos-completion-rate">0%</div>
+                    <div class="stat-label">Tasa de Completitud Conjunta</div>
+                </div>
+            </div>
+            
+            <div class="chart-container" style="margin-bottom: 40px; position: relative; height: 300px;">
+                <canvas id="weeklyChart"></canvas>
+            </div>
+            
+            <h3 style="margin-top: 50px;">Actividades por Día</h3>
+            <div class="daily-stats">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Total</th>
+                            <th>Completadas</th>
+                            <th>Isra</th>
+                            <th>Chayo</th>
+                            <th>Conjuntas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="daily-stats-table">
+                        <!-- Datos serán llenados por JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Herramientas de datos</h3>
+            <div class="data-tools">
+                <button class="btn" onclick="exportData()">Exportar datos</button>
+                
+                <div style="margin: 20px 0;">
+                    <label for="importFile">Importar datos:</label>
+                    <input type="file" id="importFile" accept=".json" onchange="importData(this)">
+                </div>
+                
+                <button class="btn reset-data-btn" onclick="resetAllData()">Reiniciar todos los datos</button>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar si el usuario ha iniciado sesión usando el nuevo sistema
+            if (!UsersDB.isAuthenticated()) {
+                window.location.href = '../login.html';
+                return;
+            }
+            
+            updateStatistics();
+            updateAuthUI();
+        });
+        
+        function updateStatistics() {
+            // Weekly stats summary
+            const weeklyData = getWeeklyStats();
+            const weekDates = Object.keys(weeklyData);
+            
+            let totalCompleted = 0;
+            let totalActivities = 0;
+            
+            // Collect data for chart
+            const chartLabels = [];
+            const chartData = [];
+            
+            weekDates.forEach(date => {
+                const stats = weeklyData[date];
+                totalCompleted += stats.completed;
+                totalActivities += stats.total;
+                
+                // Format date for display (DD/MM)
+                const dateObj = new Date(date);
+                const formattedDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}`;
+                
+                chartLabels.push(formattedDate);
+                chartData.push(stats.completionRate || 0);
+            });
+            
+            // Update summary cards
+            const totalCompletionRate = totalActivities > 0 ? (totalCompleted / totalActivities) * 100 : 0;
+            document.getElementById('total-completion-rate').textContent = `${Math.round(totalCompletionRate)}%`;
+            
+            // Calculate person-specific rates across all days
+            let israCompleted = 0, israTotal = 0;
+            let chayoCompleted = 0, chayoTotal = 0;
+            let ambosCompleted = 0, ambosTotal = 0;
+            
+            const diasSemana = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+            diasSemana.forEach(day => {
+                const dayStats = getDayStats(day);
+                
+                // Check if we have any activities for this day
+                if (dayStats.total === 0) {
+                    // Try to count checkboxes from the DOM
+                    try {
+                        const tempDiv = document.createElement('div');
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('GET', `${day}.html`, false);
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === 4 && xhr.status === 200) {
+                                tempDiv.innerHTML = xhr.responseText;
+                                const checkboxes = tempDiv.querySelectorAll(`.activity-checkbox[data-activity-id^="${day}-"]`);
+                                
+                                // Count activities by person
+                                checkboxes.forEach(checkbox => {
+                                    const activityId = checkbox.dataset.activityId;
+                                    const idParts = activityId.split('-');
+                                    if (idParts.length >= 2) {
+                                        const person = idParts[1]; // isra, chayo, or ambos
+                                        
+                                        if (person === 'isra') {
+                                            dayStats.isra.total++;
+                                            dayStats.total++;
+                                        } else if (person === 'chayo') {
+                                            dayStats.chayo.total++;
+                                            dayStats.total++;
+                                        } else if (person === 'ambos') {
+                                            dayStats.ambos.total++;
+                                            dayStats.total++;
+                                        }
+                                    }
+                                });
+                            }
+                        };
+                        xhr.send();
+                    } catch (e) {
+                        console.error(`Error loading ${day}.html:`, e);
+                    }
+                }
+                
+                israCompleted += dayStats.isra.completed;
+                israTotal += dayStats.isra.total;
+                
+                chayoCompleted += dayStats.chayo.completed;
+                chayoTotal += dayStats.chayo.total;
+                
+                ambosCompleted += dayStats.ambos.completed;
+                ambosTotal += dayStats.ambos.total;
+            });
+            
+            const israCompletionRate = israTotal > 0 ? (israCompleted / israTotal) * 100 : 0;
+            const chayoCompletionRate = chayoTotal > 0 ? (chayoCompleted / chayoTotal) * 100 : 0;
+            const ambosCompletionRate = ambosTotal > 0 ? (ambosCompleted / ambosTotal) * 100 : 0;
+            
+            document.getElementById('isra-completion-rate').textContent = `${Math.round(israCompletionRate)}%`;
+            document.getElementById('chayo-completion-rate').textContent = `${Math.round(chayoCompletionRate)}%`;
+            document.getElementById('ambos-completion-rate').textContent = `${Math.round(ambosCompletionRate)}%`;
+            
+            // Create weekly chart
+            const ctx = document.getElementById('weeklyChart').getContext('2d');
+            
+            // Check if weeklyChart exists and is a Chart.js instance before trying to destroy it
+            if (window.weeklyChart && typeof window.weeklyChart.destroy === 'function') {
+                window.weeklyChart.destroy();
+            }
+            
+            window.weeklyChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: 'Tasa de Completitud Diaria (%)',
+                        data: chartData,
+                        backgroundColor: 'rgba(74, 111, 165, 0.2)',
+                        borderColor: 'rgba(74, 111, 165, 1)',
+                        borderWidth: 2,
+                        tension: 0.1,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Porcentaje de Completitud'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Día'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Completitud: ${Math.round(context.raw)}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Create daily stats table
+            const tableBody = document.getElementById('daily-stats-table');
+            tableBody.innerHTML = '';
+            
+            // Usar la función getDayStats para obtener las estadísticas correctamente
+            // Ya tenemos diasSemana declarado arriba, lo reutilizamos
+            
+            diasSemana.forEach(day => {
+                // Obtener estadísticas directamente usando la función mejorada
+                const stats = getDayStats(day);
+                
+                // Create table row
+                const row = document.createElement('tr');
+                
+                // Day name (capitalized)
+                const dayCell = document.createElement('td');
+                dayCell.textContent = day.charAt(0).toUpperCase() + day.slice(1);
+                row.appendChild(dayCell);
+                
+                // Total activities
+                const totalCell = document.createElement('td');
+                totalCell.textContent = stats.total;
+                row.appendChild(totalCell);
+                
+                // Completed activities
+                const completedCell = document.createElement('td');
+                completedCell.textContent = `${stats.completed} (${Math.round(stats.completionRate)}%)`;
+                row.appendChild(completedCell);
+                
+                // Isra activities
+                const israCell = document.createElement('td');
+                israCell.textContent = `${stats.isra.completed}/${stats.isra.total} (${Math.round(stats.isra.completionRate)}%)`;
+                row.appendChild(israCell);
+                
+                // Chayo activities
+                const chayoCell = document.createElement('td');
+                chayoCell.textContent = `${stats.chayo.completed}/${stats.chayo.total} (${Math.round(stats.chayo.completionRate)}%)`;
+                row.appendChild(chayoCell);
+                
+                // Joint activities
+                const ambosCell = document.createElement('td');
+                ambosCell.textContent = `${stats.ambos.completed}/${stats.ambos.total} (${Math.round(stats.ambos.completionRate)}%)`;
+                row.appendChild(ambosCell);
+                
+                tableBody.appendChild(row);
+            });
+            
+            console.log('Table created with stats from getDayStats');
+        }
+        
+        // Función para actualizar la UI basada en el estado de autenticación
+        function updateAuthUI() {
+            const authLink = document.getElementById('authLink');
+            const currentUser = UsersDB.getCurrentUser();
+            
+            if (currentUser) {
+                authLink.textContent = `Cerrar Sesión (${currentUser.displayName})`;
+            } else {
+                authLink.textContent = 'Iniciar Sesión';
+            }
+        }
+        
+        // Manejador para el enlace de autenticación
+        document.getElementById('authLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            if (UsersDB.isAuthenticated()) {
+                // Cerrar sesión usando el nuevo sistema
+                UsersDB.logout();
+                alert('Has cerrado sesión exitosamente.');
+                // Redirigir a la página de login después de cerrar sesión
+                window.location.href = '../login.html';
+            } else {
+                // Redirigir a la página de inicio de sesión
+                window.location.href = '../login.html';
+            }
+        });
+    </script>
+</body>
+</html>

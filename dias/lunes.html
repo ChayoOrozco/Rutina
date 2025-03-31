@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunes - Rutina Familiar de Chayo e Isra</title>
+    <link rel="stylesheet" href="../estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="../js/config.js"></script>
+    <script src="../js/users-db.js"></script>
+    <script src="../js/activity-tracker.js"></script>
+    <script src="../js/nav-icons.js"></script>
+    <script src="../js/routine-manager.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Rutina Familiar de Chayo e Isra</h1>
+        <p>Plan personalizado para TDAH, TCA, TEA y Depresión Clínica</p>
+    </header>
+    
+    <nav id="nav-days">
+        <!-- La navegación de días se genera dinámicamente con JavaScript -->
+    </nav>
+    <nav id="nav-tools">
+        <!-- La barra de herramientas se genera dinámicamente con JavaScript -->
+    </nav>
+    
+    <main>
+        <h2>Lunes</h2>
+        <div class="schedule-card">
+            <div class="time-block">
+                <div class="time">5:00 - 6:30 AM</div>
+                <div class="time-content">
+                    <div class="activity">
+                        <span class="person isra">Isra</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-isra-despertar">
+                            <span class="activity-title-text">5:30 AM: Despertar y beber agua</span>
+                        </div>
+                        <div class="details">
+                            Beber un vaso de agua a temperatura ambiente.
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo TEA:</strong> Mantener la misma rutina exacta cada día. Coloca el vaso en el mismo lugar cada noche.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person chayo">Chayo</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-chayo-despertar">
+                            <span class="activity-title-text">5:00 AM: Despertar y beber agua con vinagre de manzana</span>
+                        </div>
+                        <div class="details">
+                            Beber un vaso de agua con una cucharada de vinagre de manzana orgánico.
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo TDAH:</strong> Coloca el vaso y el vinagre de manzana preparado desde la noche anterior. Tomar suplementos y aminoácidos esenciales (1 scoop) junto con el agua.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person isra">Isra</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-isra-ejercicio">
+                            <span class="activity-title-text">5:40 - 6:10 AM: Ejercicio con ligas</span>
+                        </div>
+                        <div class="details">
+                            <strong>Rutina específica:</strong> 3 series de 10 repeticiones de:
+                            <ul>
+                                <li>Jalones con liga a la altura del pecho</li>
+                                <li>Sentadillas con liga en los muslos</li>
+                                <li>Press de hombros con liga</li>
+                            </ul>
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo:</strong> Usar temporizador visual para marcar los descansos de 60 segundos.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person chayo">Chayo</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-chayo-baile">
+                            <span class="activity-title-text">5:10 - 5:40 AM: Sesión de baile</span>
+                        </div>
+                        <div class="details">
+                            Playlist de YouTube "Dance Workout 30 minutes" o app "FitOn".
+                        </div>
+                        <div class="tip">
+                            <strong>Preparación:</strong> Colocar ropa de ejercicio lista desde la noche anterior.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person isra">Isra</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-isra-ducha">
+                            <span class="activity-title-text">6:10 - 6:25 AM: Ducha</span>
+                        </div>
+                        <div class="details">
+                            Ducha con temperatura constante.
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo TEA:</strong> Usar productos con el mismo aroma siempre.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-ambos-desayuno">
+                            <span class="activity-title-text">6:00 - 6:30 AM: Desayuno y preparación</span>
+                        </div>
+                        <div class="details">
+                            <strong>Chayo (desayuno):</strong> 2 huevos revueltos con espinacas + 1 rebanada de pan integral<br>
+                            <strong>Isra (desayuno):</strong> Huevos con jamón de pavo + 1/2 aguacate + 1 pan integral pequeño con café
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">12:00 - 1:00 PM</div>
+                <div class="time-content">
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-ambos-almuerzo">
+                            <span class="activity-title-text">Almuerzo preparado</span>
+                        </div>
+                        <div class="details">
+                            Pollo a la plancha (150g) + verduras asadas (brócoli, zanahoria) + 1/3 taza arroz integral<br>
+                            Para Isra: Incluir 1 tortilla de maíz (fase inicial)
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-ambos-caminata">
+                            <span class="activity-title-text">1:00 - 1:15 PM: Caminata breve</span>
+                        </div>
+                        <div class="details">
+                            Caminata al aire libre. Meta: 1,000 pasos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">4:30 - 5:30 PM</div>
+                <div class="time-content">
+                    <div class="activity">
+                        <span class="person chayo">Chayo</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-chayo-entrenamiento">
+                            <span class="activity-title-text">Entrenamiento de pesas - DÍA DE PIERNAS</span>
+                        </div>
+                        <div class="details">
+                            <strong>Rutina específica:</strong>
+                            <ul>
+                                <li>Sentadillas con barra (3 series x 12 reps)</li>
+                                <li>Prensa de piernas (3 series x 15 reps)</li>
+                                <li>Hip thrust (3 series x 15 reps)</li>
+                                <li>Elevaciones de pantorrilla (3 series x 20 reps)</li>
+                                <li>Abductores en máquina (3 series x 15 reps)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person isra">Isra</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-isra-descompresion">
+                            <span class="activity-title-text">Tiempo de descompresión</span>
+                        </div>
+                        <div class="details">
+                            Escuchar podcast con audífonos o leer en espacio tranquilo.
+                        </div>
+                        <div class="tip">
+                            <strong>Importante:</strong> Evitar estímulos intensos después del trabajo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">6:00 - 10:00 PM</div>
+                <div class="time-content">
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-ambos-cena-prep">
+                            <span class="activity-title-text">6:00 - 7:00 PM: Preparación de cena</span>
+                        </div>
+                        <div class="details">
+                            <strong>Cena:</strong> Pescado al horno con limón y especias + ensalada verde<br>
+                            <strong>Tareas divididas:</strong>
+                            <ul>
+                                <li>Chayo: Preparar pescado y condimentos</li>
+                                <li>Isra: Cortar vegetales y preparar ensalada</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-ambos-cena">
+                            <span class="activity-title-text">7:00 - 7:45 PM: Cena sin distracciones</span>
+                        </div>
+                        <div class="details">
+                            Comer sentados, sin TV/celulares, conversando sobre 3 cosas positivas del día.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-ambos-limpieza">
+                            <span class="activity-title-text">7:45 - 8:15 PM: Limpieza de cocina</span>
+                        </div>
+                        <div class="details">
+                            <strong>Tareas divididas:</strong>
+                            <ul>
+                                <li>Chayo: Lavar ollas y sartenes</li>
+                                <li>Isra: Limpiar superficies y barrer</li>
+                            </ul>
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo TDAH:</strong> Timer de 15 minutos para mantener enfoque.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-ambos-planificacion">
+                            <span class="activity-title-text">8:15 - 8:30 PM: Planificación para mañana</span>
+                        </div>
+                        <div class="details">
+                            <ul>
+                                <li>Revisar agenda física en la cocina</li>
+                                <li>Preparar ropa de trabajo y ejercicio</li>
+                                <li>Sacar comida congelada si es necesario</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-ambos-rutina-relax">
+                            <span class="activity-title-text">8:30 - 9:30 PM: Rutina relajante pre-sueño</span>
+                        </div>
+                        <div class="details">
+                            <strong>Actividades concretas:</strong>
+                            <ul>
+                                <li>Ducha tibia (no caliente)</li>
+                                <li>Estiramientos suaves (5 minutos)</li>
+                                <li>Técnica de respiración 4-7-8 (inhalar 4 segundos, mantener 7, exhalar 8)</li>
+                                <li>Para Chayo: Colorear mandala o hacer lista corta de tareas para "vaciar la mente"</li>
+                                <li>Para Isra: Escuchar mismo audiolibro/sonidos relajantes cada noche</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="lunes-ambos-luces">
+                            <span class="activity-title-text">9:30 - 10:00 PM: Apagar luces y dispositivos</span>
+                        </div>
+                        <div class="details">
+                            Usar luz cálida/rojiza si necesitan iluminación.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- El script de navegación ahora se carga desde nav-icons.js -->
+</body>
+</html>

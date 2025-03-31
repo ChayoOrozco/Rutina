@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domingo - Rutina Familiar de Chayo e Isra</title>
+    <link rel="stylesheet" href="../estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="../js/users-db.js"></script>
+    <script src="../js/activity-tracker.js"></script>
+    <script src="../js/nav-icons.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Rutina Familiar de Chayo e Isra</h1>
+        <p>Plan personalizado para TDAH, TCA, TEA y Depresión Clínica</p>
+    </header>
+    
+    <nav id="nav-days">
+        <!-- La navegación de días se genera dinámicamente con JavaScript -->
+    </nav>
+    <nav id="nav-tools">
+        <!-- La barra de herramientas se genera dinámicamente con JavaScript -->
+    </nav>
+    
+    <main>
+        <h2>Domingo</h2>
+        <div class="schedule-card">
+            <div class="time-block">
+                <div class="time">7:00 - 9:30 AM</div>
+                <div class="time-content">
+                    <div class="activity">
+                        <span class="person isra">Isra</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="domingo-isra-despertar">
+                            <span class="activity-title-text">7:00 AM: Despertar y beber agua</span>
+                        </div>
+                        <div class="details">
+                            Beber un vaso de agua a temperatura ambiente.
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo TEA:</strong> Mantener la misma rutina básica, aunque con horario más flexible.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person chayo">Chayo</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="domingo-chayo-despertar">
+                            <span class="activity-title-text">7:30 AM: Despertar y beber agua con vinagre de manzana</span>
+                        </div>
+                        <div class="details">
+                            Beber un vaso de agua con una cucharada de vinagre de manzana orgánico.
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo TDAH:</strong> Permitir despertar natural sin alarma pero antes de las 8:30 AM para mantener ritmo circadiano. Tomar suplementos y aminoácidos esenciales (1 scoop) junto con el agua.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="domingo-ambos-desayuno">
+                            <span class="activity-title-text">8:00 - 9:30 AM: Desayuno especial dominical</span>
+                        </div>
+                        <div class="details">
+                            <strong>Desayuno más elaborado:</strong> Opción nutritiva pero especial que incluya:
+                            <ul>
+                                <li>Proteína (huevos, yogur griego)</li>
+                                <li>Carbohidratos complejos (avena, pan integral)</li>
+                                <li>Frutas variadas</li>
+                                <li>Bebida especial (café de especialidad, té especial)</li>
+                            </ul>
+                            <strong>Preparación conjunta</strong> con música suave de fondo.
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo:</strong> Comer al exterior o en espacio agradable de la casa, sin dispositivos electrónicos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">10:00 AM - 1:00 PM</div>
+                <div class="time-content">
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="domingo-ambos-aire-libre">
+                            <span class="activity-title-text">10:00 - 11:30 AM: Actividad al aire libre</span>
+                        </div>
+                        <div class="details">
+                            <strong>Opciones rotativas:</strong>
+                            <ul>
+                                <li>Caminata en parque o sendero conocido</li>
+                                <li>Paseo en bicicleta por ruta familiar</li>
+                                <li>Jardinerí­a o cuidado de plantas</li>
+                                <li>Visita a mercado local o tienda específica</li>
+                            </ul>
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo TEA:</strong> Elegir lugares con nivel de estimulación sensorial predecible y opciones de "escape" si es necesario.
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo TDAH:</strong> Llevar botellas de agua y snacks para evitar bajones de energía.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="domingo-ambos-actividad-creativa">
+                            <span class="activity-title-text">11:30 AM - 1:00 PM: Actividad creativa o de aprendizaje</span>
+                        </div>
+                        <div class="details">
+                            <strong>Opciones rotativas:</strong>
+                            <ul>
+                                <li>Cocina experimental (receta nueva pero sencilla)</li>
+                                <li>Proyecto creativo conjunto (arte, manualidades)</li>
+                                <li>Ver documental/curso corto juntos con discusión posterior</li>
+                                <li>Lectura compartida de tema de interés</li>
+                            </ul>
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo:</strong> Elegir la actividad con anticipación (sábado) para tener materiales listos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">1:00 - 5:00 PM</div>
+                <div class="time-content">
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="domingo-ambos-almuerzo">
+                            <span class="activity-title-text">1:00 - 2:00 PM: Almuerzo nutritivo</span>
+                        </div>
+                        <div class="details">
+                            <strong>Opciones:</strong> 
+                            <ul>
+                                <li>Comida preparada el sábado y recalentada</li>
+                                <li>Almuerzo sencillo tipo "bowl": proteína + verduras + carbohidrato complejo</li>
+                                <li>En ocasiones especiales: comida a domicilio de restaurante familiar (opciones preseleccionadas)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person chayo">Chayo</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="domingo-chayo-autocuidado">
+                            <span class="activity-title-text">2:30 - 4:00 PM: Tiempo de autocuidado</span>
+                        </div>
+                        <div class="details">
+                            <strong>Actividades de bienestar:</strong>
+                            <ul>
+                                <li>Rutina de cuidado personal (mascarillas, baño de sales)</li>
+                                <li>Meditación guiada o yoga suave</li>
+                                <li>Llamada con amiga(o) de confianza</li>
+                                <li>Lectura o podcast motivacional</li>
+                            </ul>
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo TDAH/TCA:</strong> Este tiempo es no-negociable. Preparar todo lo necesario con anticipación.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person isra">Isra</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="domingo-isra-interes">
+                            <span class="activity-title-text">2:30 - 4:00 PM: Tiempo para interés especial</span>
+                        </div>
+                        <div class="details">
+                            Tiempo dedicado a actividad de interés profundo en espacio designado.
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo TEA:</strong> Usar audífonos con cancelación de ruido si es necesario y temporizador visual.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="domingo-ambos-planificacion">
+                            <span class="activity-title-text">4:00 - 5:00 PM: Reunión semanal de planificación</span>
+                        </div>
+                        <div class="details">
+                            <strong>Estructura de la reunión:</strong>
+                            <ul>
+                                <li>Revisar calendario de la semana (10 min)</li>
+                                <li>Planificar comidas principales (10 min)</li>
+                                <li>Distribuir tareas domésticas específicas (10 min)</li>
+                                <li>Preguntas específicas: "¿Qué necesitas de mí esta semana?" (15 min)</li>
+                                <li>Revisar presupuesto si es necesario (15 min)</li>
+                            </ul>
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo:</strong> Usar plantillas visuales preparadas y tomar notas. Hacerlo en mesa despejada con bebidas.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="time-block">
+                <div class="time">5:00 - 10:00 PM</div>
+                <div class="time-content">
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="domingo-ambos-preparacion">
+                            <span class="activity-title-text">5:00 - 6:30 PM: Preparación para la semana</span>
+                        </div>
+                        <div class="details">
+                            <strong>Actividades prácticas:</strong>
+                            <ul>
+                                <li>Preparar meriendas y almuerzos para primeros días</li>
+                                <li>Organizar ropa para toda la semana</li>
+                                <li>Revisar materiales y equipos necesarios</li>
+                                <li>Lista de compras si es necesario</li>
+                            </ul>
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo TDAH/TEA:</strong> Usar listas de verificación visuales para cada paso.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="domingo-ambos-cena">
+                            <span class="activity-title-text">6:30 - 7:30 PM: Cena ligera</span>
+                        </div>
+                        <div class="details">
+                            <strong>Opciones:</strong> Sopa, ensalada completa, wrap o bowl ligero.
+                            <br>
+                            <strong>Regla:</strong> Opción simple que no genere muchos platos ni complejidad.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="domingo-ambos-ocio">
+                            <span class="activity-title-text">7:30 - 9:00 PM: Tiempo de ocio y relajación</span>
+                        </div>
+                        <div class="details">
+                            <strong>Opciones:</strong>
+                            <ul>
+                                <li>Película o episodios de serie familiar (preseleccionada)</li>
+                                <li>Juego de mesa tranquilo</li>
+                                <li>Lectura individual en el mismo espacio</li>
+                            </ul>
+                        </div>
+                        <div class="tip">
+                            <strong>Consejo:</strong> Evitar contenido estresante o estimulante. El objetivo es transición a la semana.
+                        </div>
+                    </div>
+                    
+                    <div class="activity">
+                        <span class="person ambos">Ambos</span>
+                        <div class="activity-title">
+                            <input type="checkbox" class="activity-checkbox" data-activity-id="domingo-ambos-rutina-presueño">
+                            <span class="activity-title-text">9:00 - 10:00 PM: Rutina pre-sueño de transición</span>
+                        </div>
+                        <div class="details">
+                            <strong>Actividades de preparación para la semana:</strong>
+                            <ul>
+                                <li>Ducha relajante</li>
+                                <li>Preparación completa para lunes (ropa, mochila, llaves, etc.)</li>
+                                <li>Técnica de relajación (respiración, meditación breve)</li>
+                                <li>Revisión rápida de horario de lunes</li>
+                                <li>Apagado de dispositivos 30 minutos antes de dormir</li>
+                            </ul>
+                        </div>
+                        <div class="tip">
+                            <strong>Importante:</strong> Dormir temprano para iniciar semana descansados.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
