@@ -5,10 +5,36 @@
 
 const AppConfig = {
     // Información de la aplicación
+    appTitle: "Rutina de Chayo",
+    appSubtitle: "Plan personalizado para TDAH y TCA",
+    
+    /* Configuración original - comentado para referencia futura
     appTitle: "Rutina Familiar de Chayo e Isra",
     appSubtitle: "Plan personalizado para TDAH, TCA, TEA y Depresión Clínica",
+    */
     
     // Nombres de los miembros de la familia
+    familyMembers: {
+        member1: {
+            id: "chayo",
+            displayName: "Chayo",
+            color: "#e6f7ff"
+        },
+        /* Miembro comentado para referencia futura
+        member2: {
+            id: "isra",
+            displayName: "Isra",
+            color: "#e6ffe6"
+        },
+        */
+        both: {
+            id: "ambos",
+            displayName: "Ambos",
+            color: "#fff0e6"
+        }
+    },
+    
+    /* Configuración original completa - comentada para referencia futura
     familyMembers: {
         member1: {
             id: "chayo",
@@ -26,6 +52,7 @@ const AppConfig = {
             color: "#fff0e6"
         }
     },
+    */
     
     // Configuración de navegación
     navigation: {

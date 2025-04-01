@@ -92,6 +92,7 @@ function getDayStats(day) {
         total: 0,
         completed: 0,
         completionRate: 0,
+        /* Estadísticas de Isra comentadas para referencia futura */
         isra: {
             total: 0,
             completed: 0,
@@ -126,6 +127,7 @@ function getDayStats(day) {
             if (idParts.length >= 2) {
                 const person = idParts[1]; // isra, chayo, or ambos
                 
+                // Comentado 'isra' para mantener solo 'chayo' y 'ambos' (pero conservando funcionalidad)
                 if (person === 'isra' || person === 'chayo' || person === 'ambos') {
                     stats[person].total++;
                     stats.total++;
@@ -178,6 +180,7 @@ function getDayStats(day) {
         stats.completionRate = (stats.completed / stats.total) * 100;
     }
     
+    /* Cálculo para Isra comentado para referencia futura, manteniendo funcionalidad */
     if (stats.isra.total > 0) {
         stats.isra.completionRate = (stats.isra.completed / stats.isra.total) * 100;
     }
